@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>منشئ محتوى سوشيال ميديا</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #1a1a24;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.15);
+    --accent: #7c6ef7;
+    --accent2: #a78bfa;
+    --text: #f0effe;
+    --muted: #8b8a9e;
+    --success: #34d399;
+    --instagram: #e1306c;
+    --facebook: #1877f2;
+    --tiktok: #9b59b6;
+    --twitter: #1da1f2;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -30%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(124,110,247,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 8px 20px;
+    margin-bottom: 1.5rem;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .logo-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #fff 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  header p {
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-title::before {
+    content: '';
+    width: 3px;
+    height: 14px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .full { grid-column: 1 / -1; }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  label { font-size: 13px; color: var(--muted); }
+
+  input[type=text], input[type=password], select, textarea {
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    width: 100%;
+    transition: border-color 0.2s;
+    outline: none;
+    direction: rtl;
+  }
+
+  input[type=text]:focus, input[type=password]:focus, select:focus, textarea:focus {
+    border-color: var(--accent);
+  }
+
+  select option { background: var(--surface2); }
+  textarea { resize: vertical; min-height: 80px; line-height: 1.6; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .chip {
+    padding: 7px 16px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 13px;
+    border: 1px solid var(--border2);
+    border-radius: 50px;
+    background: var(--surface2);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .chip:hover { border-color: var(--accent); color: var(--text); }
+  .chip.active { border-color: var(--accent); background: rgba(124,110,247,0.15); color: var(--accent2); }
+
+  .chip.tone-chip.active { border-color: #34d399; background: rgba(52,211,153,0.1); color: #34d399; }
+
+  .count-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  input[type=range] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 4px;
+    background: var(--border2);
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    padding: 0;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--accent);
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .count-val {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent2);
+    min-width: 24px;
+    text-align: center;
+  }
+
+  .api-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  .api-row input { flex: 1; }
+
+  .show-btn {
+    padding: 0 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 13px;
+    font-family: 'Cairo', sans-serif;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+
+  .show-btn:hover { border-color: var(--border2); color: var(--text); }
+
+  .generate-btn {
+    width: 100%;
+    padding: 14px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent) 0%, #9b6ef7 100%);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: opacity 0.2s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+
+  .generate-btn:hover { opacity: 0.9; }
+  .generate-btn:active { transform: scale(0.99); }
+  .generate-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .results { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 12px; }
+
+  .post-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.25rem;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .platform-tag {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 50px;
+    letter-spacing: 0.04em;
+  }
+
+  .tag-instagram { background: rgba(225,48,108,0.15); color: #e1306c; }
+  .tag-facebook { background: rgba(24,119,242,0.15); color: #1877f2; }
+  .tag-tiktok { background: rgba(155,89,182,0.15); color: #c39bd3; }
+  .tag-twitter { background: rgba(29,161,242,0.15); color: #1da1f2; }
+
+  .copy-btn {
+    font-family: 'Cairo', sans-serif;
+    font-size: 12px;
+    padding: 5px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .copy-btn:hover { border-color: var(--success); color: var(--success); }
+  .copy-btn.copied { border-color: var(--success); color: var(--success); }
+
+  .post-text {
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--text);
+    white-space: pre-wrap;
+  }
+
+  .loading-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--muted);
+  }
+
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid var(--border2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1rem;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .error-msg {
+    background: rgba(239,68,68,0.1);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: 14px;
+    color: #f87171;
+    text-align: center;
+  }
+
+  .api-note {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .api-note a { color: var(--accent2); text-decoration: none; }
+  .api-note a:hover { text-decoration: underline; }
+
+  footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <header>
+    <h1>منشئ محتوى<br>سوشيال ميديا</h1>
+    <p>بوستات احترافية لعملائك في ثوانٍ</p>
+  </header>
+
+  <div class="card">
+    <div class="card-title">مفتاح API</div>
+    <div class="field">
+      <label>Anthropic API Key</label>
+      <div class="api-row">
+        <input type="password" id="apiKey" placeholder="gsk_..." />
+        <button class="show-btn" onclick="toggleKey()">إظهار</button>
+      </div>
+      <p class="api-note">احصل على مفتاحك مجاناً من <a href="https://console.groq.com" target="_blank">console.groq.com</a></p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">بيانات العميل</div>
+    <div class="form-grid">
+      <div class="field">
+        <label>اسم المحل / المطعم</label>
+        <input type="text" id="businessName" placeholder="مثال: مطعم الأصيل" />
+      </div>
+      <div class="field">
+        <label>نوع النشاط</label>
+        <select id="businessType">
+          <option value="مطعم">مطعم</option>
+          <option value="كافيه">كافيه</option>
+          <option value="محل ملابس">محل ملابس</option>
+          <option value="محل حلويات">محل حلويات</option>
+          <option value="صالون تجميل">صالون تجميل</option>
+          <option value="جيم">جيم / نادي رياضي</option>
+          <option value="محل إلكترونيات">محل إلكترونيات</option>
+          <option value="أخرى">أخرى</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label>وصف سريع (تخصص، مميزات، عروض)</label>
+        <textarea id="description" placeholder="مثال: متخصصين في المأكولات الشامية، عندنا عرض وجبة عيلة بـ 199 جنيه"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">إعدادات المحتوى</div>
+    <div class="field" style="margin-bottom:1rem">
+      <label style="margin-bottom:8px">المنصات</label>
+      <div class="chips" id="platforms">
+        <button class="chip active" data-platform="إنستجرام">إنستجرام</button>
+        <button class="chip" data-platform="فيسبوك">فيسبوك</button>
+        <button class="chip" data-platform="تيك توك">تيك توك</button>
+        <button class="chip" data-platform="تويتر/X">تويتر / X</button>
+      </div>
+    </div>
+    <div class="field" style="margin-bottom:1rem">
+      <label style="margin-bottom:8px">نبرة المحتوى</label>
+      <div class="chips" id="tones">
+        <button class="chip tone-chip active" data-tone="ودية وحيوية">ودية وحيوية</button>
+        <button class="chip tone-chip" data-tone="احترافية وراقية">احترافية وراقية</button>
+        <button class="chip tone-chip" data-tone="مضحكة وكوميدية">مضحكة وكوميدية</button>
+        <button class="chip tone-chip" data-tone="مقنعة وترويجية">مقنعة وترويجية</button>
+      </div>
+    </div>
+    <div class="field">
+      <label>عدد البوستات</label>
+      <div class="count-row">
+        <input type="range" min="1" max="5" step="1" value="3" id="postsCount" oninput="document.getElementById('countVal').textContent=this.value" />
+        <span class="count-val" id="countVal">3</span>
+      </div>
+    </div>
+  </div>
+
+  <button class="generate-btn" id="generateBtn" onclick="generate()">✦ اعمل البوستات دلوقتي</button>
+
+  <div id="results"></div>
+
+
+</div>
+
+<script>
+  document.querySelectorAll('#platforms .chip').forEach(btn => {
+    btn.addEventListener('click', () => btn.classList.toggle('active'));
+  });
+
+  document.querySelectorAll('#tones .chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#tones .chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  function toggleKey() {
+    const inp = document.getElementById('apiKey');
+    const btn = event.target;
+    if (inp.type === 'password') { inp.type = 'text'; btn.textContent = 'إخفاء'; }
+    else { inp.type = 'password'; btn.textContent = 'إظهار'; }
+  }
+
+  const platformTag = {
+    'إنستجرام': 'tag-instagram',
+    'فيسبوك': 'tag-facebook',
+    'تيك توك': 'tag-tiktok',
+    'تويتر/X': 'tag-twitter'
+  };
+
+  async function generate() {
+    const apiKey = document.getElementById('apiKey').value.trim();
+    const name = document.getElementById('businessName').value.trim();
+    const type = document.getElementById('businessType').value;
+    const desc = document.getElementById('description').value.trim();
+    const selectedPlatforms = [...document.querySelectorAll('#platforms .chip.active')].map(b => b.dataset.platform);
+    const tone = document.querySelector('#tones .chip.active')?.dataset.tone || 'ودية وحيوية';
+    const count = parseInt(document.getElementById('postsCount').value);
+
+    if (!apiKey) { alert('من فضلك ادخل API Key الخاص بك'); return; }
+    if (!name) { alert('من فضلك اكتب اسم المحل'); return; }
+    if (selectedPlatforms.length === 0) { alert('اختار منصة واحدة على الأقل'); return; }
+
+    const btn = document.getElementById('generateBtn');
+    btn.disabled = true;
+    btn.textContent = '... بيكتب';
+
+    const results = document.getElementById('results');
+    results.innerHTML = '<div class="loading-state"><div class="spinner"></div><p>بيكتب البوستات...</p></div>';
+
+    const prompt = `أنت خبير تسويق على سوشيال ميديا. اكتب ${count} بوست لـ "${name}" (${type}).
+${desc ? `معلومات إضافية: ${desc}` : ''}
+المنصات: ${selectedPlatforms.join(', ')}
+النبرة: ${tone}
+اللغة: العربية المصرية العامية
+
+تعليمات:
+- كل بوست لمنصة مختلفة إذا في أكتر من منصة
+- اكتب هاشتاجات مناسبة
+- كل بوست جذاب ومختلف عن التاني
+- خلي البوست طبيعي مش رسمي أوي
+
+رد بـ JSON فقط بالشكل ده بالظبط بدون أي كلام تاني:
+{"posts": [{"platform": "اسم المنصة", "content": "نص البوست كامل مع الهاشتاجات"}]}`;
+
+    try {
+      const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: 'llama-3.3-70b-versatile',
+          max_tokens: 1500,
+          messages: [{ role: 'user', content: prompt }]
+        })
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error?.message || 'خطأ في API');
+      }
+
+      const data = await res.json();
+      const text = data.choices[0].message.content;
+      const clean = text.replace(/```json|```/g, '').trim();
+      const parsed = JSON.parse(clean);
+
+      results.innerHTML = '<div class="results">' + parsed.posts.map((post, i) => {
+        const tag = platformTag[post.platform] || 'tag-facebook';
+        const id = 'p' + i;
+        return `<div class="post-card" style="animation-delay:${i * 0.1}s">
+          <div class="post-header">
+            <span class="platform-tag ${tag}">${post.platform}</span>
+            <button class="copy-btn" onclick="copyText('${id}', this)">نسخ</button>
+          </div>
+          <p class="post-text" id="${id}">${post.content}</p>
+        </div>`;
+      }).join('') + '</div>';
+
+    } catch (err) {
+      results.innerHTML = `<div class="error-msg">حصل خطأ: ${err.message}</div>`;
+    }
+
+    btn.disabled = false;
+    btn.textContent = '✦ اعمل البوستات دلوقتي';
+  }
+
+  function copyText(id, btn) {
+    const text = document.getElementById(id)?.textContent;
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'تم النسخ ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'نسخ'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+</script>
+</body>
+</html>

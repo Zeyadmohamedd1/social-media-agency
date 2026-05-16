@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بوستاتك | محتوى سوشيال ميديا احترافي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #D4A843;
+  --gold2: #F0C96A;
+  --dark: #0C0B08;
+  --dark2: #161410;
+  --dark3: #1E1B14;
+  --text: #F5F0E8;
+  --muted: #9A9080;
+  --border: rgba(212,168,67,0.15);
+  --border2: rgba(212,168,67,0.3);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(12,11,8,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+}
+
+.nav-cta {
+  background: var(--gold);
+  color: var(--dark);
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.nav-cta:hover { opacity: 0.85; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8rem 1.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(212,168,67,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212,168,67,0.1);
+  border: 1px solid var(--border2);
+  border-radius: 50px;
+  padding: 6px 18px;
+  font-size: 13px;
+  color: var(--gold2);
+  margin-bottom: 2rem;
+  animation: fadeDown 0.6s ease both;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:0.4;transform:scale(0.7)}
+}
+
+@keyframes fadeDown {
+  from{opacity:0;transform:translateY(-16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes fadeUp {
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.hero h1 {
+  font-size: clamp(40px, 8vw, 80px);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+
+.hero h1 span {
+  color: var(--gold);
+  position: relative;
+}
+
+.hero h1 span::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  right: 0; left: 0;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
+.hero-sub {
+  font-size: clamp(16px, 2.5vw, 20px);
+  color: var(--muted);
+  max-width: 520px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--dark);
+  font-family: 'Cairo', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  font-family: 'Cairo', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border: 1px solid var(--border2);
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  margin-top: 4rem;
+  animation: fadeUp 0.7s 0.4s ease both;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat-item { text-align: center; }
+.stat-num { font-size: 32px; font-weight: 900; color: var(--gold); line-height: 1; }
+.stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+/* SECTION */
+section { padding: 5rem 1.5rem; }
+
+.container { max-width: 900px; margin: 0 auto; }
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+/* HOW IT WORKS */
+.how { background: var(--dark2); }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.step-card {
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.step-card:hover { border-color: var(--border2); }
+
+.step-num {
+  font-size: 48px;
+  font-weight: 900;
+  color: rgba(212,168,67,0.12);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.step-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.step-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* SERVICES */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.service-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.2s;
+}
+
+.service-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+
+.service-icon {
+  font-size: 28px;
+  margin-bottom: 1rem;
+}
+
+.service-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.service-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* PRICING */
+.pricing { background: var(--dark2); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.price-card {
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.price-card:hover { transform: translateY(-4px); }
+
+.price-card.featured {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, rgba(212,168,67,0.06) 0%, var(--dark3) 100%);
+}
+
+.featured-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 50px;
+  white-space: nowrap;
+}
+
+.plan-name { font-size: 14px; color: var(--muted); margin-bottom: 0.75rem; font-weight: 600; }
+
+.plan-price {
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.plan-price span { font-size: 16px; font-weight: 500; color: var(--muted); }
+
+.plan-posts {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem; }
+
+.plan-features li {
+  font-size: 14px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.plan-features li::before {
+  content: '✓';
+  color: var(--gold);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.plan-btn {
+  width: 100%;
+  padding: 12px;
+  font-family: 'Cairo', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.plan-btn-outline {
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text);
+}
+
+.plan-btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+.plan-btn-gold {
+  background: var(--gold);
+  border: none;
+  color: var(--dark);
+}
+
+.plan-btn-gold:hover { opacity: 0.88; }
+
+/* SAMPLES */
+.samples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.sample-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.sample-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.sample-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.sample-name { font-size: 14px; font-weight: 700; }
+.sample-platform { font-size: 12px; color: var(--muted); }
+.sample-text { font-size: 14px; line-height: 1.8; color: var(--text); }
+
+.tag-ig { background: rgba(225,48,108,0.15); color: #e1306c; }
+.tag-fb { background: rgba(24,119,242,0.15); color: #5b9cf6; }
+.tag-tt { background: rgba(155,89,182,0.15); color: #c39bd3; }
+
+.platform-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+  margin-right: auto;
+}
+
+/* FAQ */
+.faq-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1px; }
+
+.faq-item {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.faq-q {
+  width: 100%;
+  text-align: right;
+  font-family: 'Cairo', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  background: none;
+  border: none;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.faq-arrow { color: var(--gold); font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.faq-item.open .faq-arrow { transform: rotate(45deg); }
+
+.faq-a {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+  padding: 0 1.25rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item.open .faq-a { max-height: 200px; padding: 0 1.25rem 1rem; }
+
+/* CTA SECTION */
+.cta-section {
+  text-align: center;
+  padding: 5rem 1.5rem;
+  background: var(--dark2);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 500px; height: 300px;
+  background: radial-gradient(ellipse, rgba(212,168,67,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-section h2 {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.cta-section p { font-size: 16px; color: var(--muted); margin-bottom: 2rem; }
+
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  font-family: 'Cairo', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.whatsapp-btn:hover { opacity: 0.88; transform: translateY(-2px); }
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  border-top: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+footer strong { color: var(--gold); }
+
+/* DIVIDER */
+.gold-line {
+  width: 48px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">بوستاتك ✦</div>
+  <a href="#pricing" class="nav-cta">اشترك دلوقتي</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    خدمة محتوى سوشيال ميديا احترافية
+  </div>
+  <h1>محتوى يجيب<br><span>عملاء حقيقيين</span></h1>
+  <p class="hero-sub">
+    بوستات سوشيال ميديا مكتوبة بالعامية المصرية لمطعمك أو محلك — بتتسلم كل أسبوع جاهزة للنشر
+  </p>
+  <div class="hero-btns">
+    <a href="#pricing" class="btn-primary">ابدأ دلوقتي</a>
+    <a href="#samples" class="btn-outline">شوف أمثلة</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">+50</div>
+      <div class="stat-label">عميل راضي</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">منصات</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">48h</div>
+      <div class="stat-label">وقت التسليم</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="container">
+    <div class="section-label">كيف بيشتغل</div>
+    <div class="gold-line"></div>
+    <h2 class="section-title">٣ خطوات بس</h2>
+    <p class="section-sub">مش محتاج تعرف أي حاجة عن السوشيال ميديا — إحنا بنعمل كل حاجة</p>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>بعتلنا بيانات محلك</h3>
+        <p>اسم المحل، نوعه، أي عروض أو أكلات مميزة عندك</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>إحنا بنكتب البوستات</h3>
+        <p>فريقنا بيكتب محتوى جذاب بالعامية المصرية لكل منصة</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>بتستلم وتنشر</h3>
+        <p>البوستات بتوصلك جاهزة على واتساب خلال 48 ساعة</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section>
+  <div class="container">
+    <div class="section-label">خدماتنا</div>
+    <div class="gold-line"></div>
+    <h2 class="section-title">إيه اللي بنعمله؟</h2>
+    <p class="section-sub">محتوى متخصص لكل نوع من أنواع المحلات والمطاعم</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🍽️</div>
+        <h3>مطاعم وكافيهات</h3>
+        <p>بوستات لأكلاتك وعروضك وأجواء مطعمك بشكل يجذب الزباين</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">👗</div>
+        <h3>محلات الملابس</h3>
+        <p>محتوى لكولكشناتك وعروضك بأسلوب يجذب التلاجة ويزود المبيعات</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💆</div>
+        <h3>صالونات وسبا</h3>
+        <p>بوستات تعرض خدماتك وتجذب عملاء جدد بشكل احترافي</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏋️</div>
+        <h3>الجيم والرياضة</h3>
+        <p>محتوى تحفيزي يعرض نتايج أعضاؤك وخدمات النادي</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛒</div>
+        <h3>متاجر ومحلات</h3>
+        <p>بوستات منتجاتك وعروضك بطريقة تشجع على الشراء</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎂</div>
+        <h3>حلويات ومخابز</h3>
+        <p>محتوى يخلي الناس تاكل بعينيها قبل ما توصل عندك</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLES -->
+<section id="samples" style="background: var(--dark2)">
+  <div class="container">
+    <div class="section-label">أمثلة على شغلنا</div>
+    <div class="gold-line"></div>
+    <h2 class="section-title">بوستات حقيقية عملناها</h2>
+    <p class="section-sub">شوف إزاي بنكتب محتوى يناسب كل نوع نشاط</p>
+    <div class="samples-grid">
+      <div class="sample-card">
+        <div class="sample-header">
+          <div class="sample-avatar tag-ig">🍕</div>
+          <div>
+            <div class="sample-name">مطعم الأصيل</div>
+            <div class="sample-platform">إنستجرام</div>
+          </div>
+          <span class="platform-pill tag-ig">Instagram</span>
+        </div>
+        <p class="sample-text">
+          🔥 عرض الجمعة عندنا مش هيتكرر!<br><br>
+          وجبة عيلة كاملة بـ 199 جنيه بس 😍<br>
+          فراخ مشوية + أرز + سلطة + عيش<br>
+          كفاية لـ 4 أشخاص!<br><br>
+          📞 اتصل وأحجز دلوقتي — الكميات محدودة<br><br>
+          #مطعم_الأصيل #عرض_الجمعة #أكل_بيتي
+        </p>
+      </div>
+      <div class="sample-card">
+        <div class="sample-header">
+          <div class="sample-avatar tag-fb">☕</div>
+          <div>
+            <div class="sample-name">كافيه نوستالجيا</div>
+            <div class="sample-platform">فيسبوك</div>
+          </div>
+          <span class="platform-pill tag-fb">Facebook</span>
+        </div>
+        <p class="sample-text">
+          صباح الخير ☀️<br><br>
+          إيه أحسن من كوباية قهوة هادية تبدأ بيها يومك؟<br><br>
+          عندنا اليومين دول: اشتري قهوة واحدة — التانية على حسابنا ❤️<br><br>
+          هنستناك من الساعة 8 الصبح 🕗<br><br>
+          #كافيه_نوستالجيا #قهوة_الصباح #عرض_اليوم
+        </p>
+      </div>
+      <div class="sample-card">
+        <div class="sample-header">
+          <div class="sample-avatar tag-tt">💇</div>
+          <div>
+            <div class="sample-name">صالون لوريال</div>
+            <div class="sample-platform">تيك توك</div>
+          </div>
+          <span class="platform-pill tag-tt">TikTok</span>
+        </div>
+        <p class="sample-text">
+          ✨ التحول ده حقيقي!<br><br>
+          عميلتنا جت بشعر تالف — ومشيت بشعر زي الحرير 😍<br><br>
+          سر الموضوع؟ كيراتين + مشط التغذية بتاعنا!<br><br>
+          📲 احجزي دلوقتي — المواعيد بتخلص بسرعة<br><br>
+          #صالون_لوريال #كيراتين #تحول_الشعر
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing">
+  <div class="container">
+    <div class="section-label">الأسعار</div>
+    <div class="gold-line"></div>
+    <h2 class="section-title">اختار الباكدج المناسب</h2>
+    <p class="section-sub">أسعار واضحة بدون أي مفاجآت — ادفع شهرياً وألغي وقت ما تحب</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="plan-name">الباكدج الأساسي</div>
+        <div class="plan-price">300 <span>جنيه/شهر</span></div>
+        <div class="plan-posts">12 بوست شهرياً • 3 في الأسبوع</div>
+        <ul class="plan-features">
+          <li>منصة واحدة (إنستجرام أو فيسبوك)</li>
+          <li>كتابة البوستات باللهجة المصرية</li>
+          <li>هاشتاجات مناسبة</li>
+          <li>تسليم على واتساب</li>
+        </ul>
+        <button class="plan-btn plan-btn-outline" onclick="openWhatsapp('أساسي')">اختار هذا الباكدج</button>
+      </div>
+
+      <div class="price-card featured">
+        <div class="featured-badge">الأكثر طلباً ⭐</div>
+        <div class="plan-name">الباكدج الاحترافي</div>
+        <div class="plan-price">600 <span>جنيه/شهر</span></div>
+        <div class="plan-posts">30 بوست شهرياً • يومياً تقريباً</div>
+        <ul class="plan-features">
+          <li>منصتين (إنستجرام + فيسبوك)</li>
+          <li>كتابة بأسلوب متخصص لنشاطك</li>
+          <li>هاشتاجات + كولز تو أكشن</li>
+          <li>تسليم أسبوعي على واتساب</li>
+          <li>تعديل بوست واحد مجاناً</li>
+        </ul>
+        <button class="plan-btn plan-btn-gold" onclick="openWhatsapp('احترافي')">اختار هذا الباكدج</button>
+      </div>
+
+      <div class="price-card">
+        <div class="plan-name">باكدج بريميوم</div>
+        <div class="plan-price">1000 <span>جنيه/شهر</span></div>
+        <div class="plan-posts">60 بوست شهرياً • منصات متعددة</div>
+        <ul class="plan-features">
+          <li>كل المنصات (إنستجرام، فيسبوك، تيك توك، تويتر)</li>
+          <li>محتوى متنوع ومبدع</li>
+          <li>تعديلات غير محدودة</li>
+          <li>تقرير شهري للأداء</li>
+          <li>أولوية في التسليم</li>
+        </ul>
+        <button class="plan-btn plan-btn-outline" onclick="openWhatsapp('بريميوم')">اختار هذا الباكدج</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="section-label">أسئلة شائعة</div>
+    <div class="gold-line"></div>
+    <h2 class="section-title">عندك سؤال؟</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>إزاي بيوصلني المحتوى؟</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">البوستات بتوصلك على واتساب في ملف أو رسائل منظمة، جاهزة تنسخها وتنشرها على طول بدون أي تعديل.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>ممكن أطلب تعديل على البوست؟</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">أيوه، في الباكدج الاحترافي تعديل واحد مجاني، وفي البريميوم تعديلات غير محدودة. الباكدج الأساسي بيتيح تعديل بـ 20 جنيه للبوست.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>لو مش عاجبني النتيجة؟</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">بنضمنلك رضاك الكامل. لو الشهر الأول مش عاجبك هنرجعلك فلوسك بدون أي كلام.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>في عقد أو التزام؟</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">لأ خالص، الاشتراك شهري وبتقدر تلغيه وقت ما تحب بدون أي رسوم إضافية.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          <span>إزاي بادفع؟</span>
+          <span class="faq-arrow">+</span>
+        </button>
+        <div class="faq-a">بنقبل الدفع عن طريق فودافون كاش، انستاباي، أو تحويل بنكي. بندفع في أول كل شهر.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>جاهز تبدأ؟ 🚀</h2>
+  <p>تواصل معنا دلوقتي وابدأ تستقبل بوستاتك خلال 48 ساعة</p>
+  <a href="https://wa.me/201015761189?text=عايز+أشترك+في+خدمة+المحتوى" class="whatsapp-btn" target="_blank">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    تواصل على واتساب
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>بوستاتك</strong> — جميع الحقوق محفوظة</p>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    item.classList.toggle('open');
+  }
+
+  function openWhatsapp(plan) {
+    const msg = encodeURIComponent(`عايز أشترك في الباكدج ${plan}`);
+    window.open(`https://wa.me/201015761189?text=${msg}`, '_blank');
+  }
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
